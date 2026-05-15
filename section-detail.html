@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Раздел — Большеелховское сельское поселение</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/img/icons/site-logo.png" alt="Логотип поселения"></span><span><span class="brand-title">Администрация Большеелховского сельского поселения</span><span class="brand-subtitle">Официальный сайт поселения</span></span></a><button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button><nav class="nav-links"><a data-link href="index.html">Главная</a><a data-link href="about.html">О поселении</a><a data-link href="residents.html">Жителям</a><a data-link href="directory.html">Справочник</a><a data-link href="news.html">Новости</a><a data-link href="events.html">События</a><a data-link href="contacts.html">Контакты</a><a data-link href="admin.html">Админ</a></nav></div></header>
+<main id="sectionDetail"></main>
+<footer class="footer"><div class="container"><div class="footer-box reveal"><div><div class="eyebrow">Раздел поселения</div><h3 style="margin:16px 0 12px;">Материал размещён внутри сайта.</h3><p>Для сверки оставлена кнопка перехода на официальный источник.</p></div><div><div class="footer-links"><a href="contacts.html">Вернуться к контактам</a><a href="directory.html">Справочник</a><a href="news.html">Новости</a><a href="events.html">События</a></div></div></div></div></footer>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/sections-store.js"></script>
+<script>
+(function(){
+  const escapeHtml = (value) => String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+  const id = new URLSearchParams(location.search).get('id');
+  const item = (window.SECTIONS_DATA || []).find(x => x.id === id) || (window.SECTIONS_DATA || [])[0];
+  const main = document.getElementById('sectionDetail');
+  const fallbackImage = 'assets/img/sections/section-default.jpg';
+  const imgTag = (src, alt) => `<img src="${escapeHtml(src || fallbackImage)}" alt="${escapeHtml(alt || 'Фото раздела')}" onerror="this.onerror=null;this.src='${fallbackImage}'">`;
+  if(!item){ main.innerHTML = '<section class="section"><div class="container"><h1>Раздел не найден</h1><a class="btn btn-primary" href="contacts.html">Назад</a></div></section>'; return; }
+  document.title = item.title + ' — Большеелховское сельское поселение';
+  const typeLabels = { service: 'Службы и предприятия поселения', direction: 'Основные направления', legal: 'НПА и правовая информация', support: 'Меры поддержки', program: 'Проекты и программы' };
+  const contacts = (item.contacts || []).map(([k,v]) => `<div><span>${escapeHtml(k)}</span><strong>${escapeHtml(typeof v === 'object' ? JSON.stringify(v) : v)}</strong></div>`).join('');
+  const details = (item.details || []).map(x => `<p>${escapeHtml(x)}</p>`).join('');
+  const tasks = (item.tasks || []).map((x, index) => `<article class="section-task-card"><span>${String(index + 1).padStart(2,'0')}</span><p>${escapeHtml(x)}</p></article>`).join('');
+  const audience = (item.audience || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+  const steps = (item.steps || []).map((x, index) => `<li><strong>${String(index + 1).padStart(2,'0')}</strong><span>${escapeHtml(x)}</span></li>`).join('');
+  const documents = (item.documents || []).map((doc, index) => `<a class="attached-doc" href="${escapeHtml(item.source)}" target="_blank" rel="noreferrer"><span>${String(index + 1).padStart(2,'0')}</span><strong>${escapeHtml(doc)}</strong><small>Открыть материал / официальный источник</small></a>`).join('');
+  const gallery = (item.gallery && item.gallery.length ? item.gallery : [{src:item.image, caption:'Основное фото раздела'}, {src:fallbackImage, caption:'Дополнительное фото'}, {src:fallbackImage, caption:'Фото можно заменить через админку'}])
+    .map((photo, index) => `<figure class="section-photo-card ${index === 0 ? 'section-photo-card--large' : ''}">${imgTag(photo.src, photo.caption || item.title)}<figcaption>${escapeHtml(photo.caption || 'Фото раздела')}</figcaption></figure>`).join('');
+  main.innerHTML = `
+  <section class="section section-detail-hero">
+    <div class="container detail-layout">
+      <article class="detail-main reveal visible" data-cms-key="section-detail-main">
+        <a class="back-link" href="contacts.html">← Назад к контактам</a>
+        <div class="eyebrow">${typeLabels[item.type] || 'Раздел поселения'}</div>
+        <h1>${escapeHtml(item.title)}</h1>
+        <p class="lead">${escapeHtml(item.desc)}</p>
+        <div class="detail-image">${imgTag(item.image || fallbackImage, item.title)}<span>${escapeHtml(item.tag)}</span></div>
+      </article>
+      <aside class="detail-side reveal visible" data-cms-key="section-detail-side">
+        <h2>Краткие сведения</h2>
+        <div class="admin-info-grid detail-info">${contacts}</div>
+        <a class="btn btn-primary" target="_blank" rel="noreferrer" href="${escapeHtml(item.source)}">Официальный источник</a>
+      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container detail-page-grid">
+      <article class="detail-text reveal visible" data-cms-key="section-detail-text">
+        <h2>Информация раздела</h2>
+        ${details}
+        <div class="section-task-grid">${tasks}</div>
+      </article>
+      <aside class="detail-text section-side-note reveal visible" data-cms-key="section-detail-audience">
+        <h2>Кому полезно</h2>
+        <ul class="section-audience-list">${audience}</ul>
+      </aside>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <article class="detail-text reveal visible" data-cms-key="section-detail-photos">
+        <h2>Фотоматериалы раздела</h2>
+        <p>Фотографии вынесены отдельными блоками. Их можно заменить через админ-редактор или подставить свои файлы в папку <strong>assets/img/sections/</strong>.</p>
+        <div class="section-photo-grid">${gallery}</div>
+      </article>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container detail-page-grid">
+      <article class="detail-text reveal visible" data-cms-key="section-detail-documents">
+        <div class="document-box">
+          <h3>Прикрепленные материалы</h3>
+          <p>Материалы оформлены внутри этой страницы как список документов и справочных ссылок. Кнопки ведут к официальному разделу-источнику для сверки и скачивания вложений.</p>
+          <div class="attached-docs">${documents}</div>
+        </div>
+      </article>
+      <aside class="detail-text section-side-note reveal visible" data-cms-key="section-detail-steps">
+        <h2>Как пользоваться разделом</h2>
+        <ol class="section-steps-list">${steps}</ol>
+      </aside>
+    </div>
+  </section>`;
+  requestAnimationFrame(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')));
+})();
+</script>
+<script src="assets/js/site-cms.js"></script>
+</body>
+</html>

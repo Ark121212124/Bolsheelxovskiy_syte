@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель — Администрация Большеелховского сельского поселения</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/img/icons/site-logo.png" alt="Логотип поселения"></span><span><span class="brand-title">Администрация Большеелховского сельского поселения</span><span class="brand-subtitle">Панель управления сайтом</span></span></a><button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button><nav class="nav-links"><a data-link href="index.html">Главная</a><a data-link href="about.html">О поселении</a><a data-link href="residents.html">Жителям</a><a data-link href="directory.html">Справочник</a><a data-link href="news.html">Новости</a><a data-link href="events.html">События</a><a data-link href="contacts.html">Контакты</a><a data-link href="admin.html">Админ</a></nav></div></header>
+<main>
+<section class="section"><div class="container"><div class="section-head reveal"><div><div class="eyebrow">Админ-панель</div><h1 style="font-size:clamp(36px,5vw,64px);max-width:11ch;">Управление всем сайтом.</h1></div><p>Демонстрационная панель для редактирования новостей, обращений, текста, ссылок, кнопок, фотографий и иконок на всех страницах сайта. Логин: <b>admin</b>, пароль: <b>admin123</b>. В реальном проекте пароль нельзя хранить в HTML/JS — нужна серверная авторизация.</p></div>
+<div id="adminLogin" class="admin-card reveal"><h3>Вход для сотрудника</h3><p>Введите демонстрационные данные доступа, чтобы открыть управление сайтом.</p><div class="form-grid"><label>Логин<input id="login" class="input" value="admin" autocomplete="username"></label><label>Пароль<input id="password" class="input" type="password" value="admin123" autocomplete="current-password"></label></div><div class="hero-actions"><button id="loginBtn" class="btn btn-primary">Войти</button></div><p id="loginMessage" class="form-message"></p></div>
+<div id="adminPanel" class="admin-layout" hidden>
+  <div id="cmsAdminHelp" style="grid-column:1/-1"></div>
+  <form id="newsForm" class="admin-card reveal"><div class="eyebrow">Публикация</div><h3 id="formTitle">Добавить новость</h3><input id="newsId" type="hidden"><div class="form-grid"><label>Заголовок<input id="title" class="input" required placeholder="Например: График приёма граждан"></label><label>Категория<select id="category" class="input"><option>Администрация</option><option>Жителям</option><option>Благоустройство</option><option>События</option><option>Документы</option></select></label><label>Дата<input id="date" class="input" type="date" required></label><label>Путь к фото / изображению<input id="image" class="input" placeholder="assets/img/news/news-default.jpg"></label><label>Краткий анонс<input id="summary" class="input" required placeholder="Краткое описание для карточки"></label></div><label>Текст новости<textarea id="body" class="input textarea" required placeholder="Полный текст новости"></textarea></label><div class="hero-actions"><button class="btn btn-primary" type="submit">Сохранить новость</button><button id="resetForm" class="btn btn-secondary" type="button">Очистить</button><button id="exportBtn" class="btn btn-ghost" type="button">Скачать JSON</button></div><p class="form-message">После сохранения новость сразу появится на странице «Новости» в этом же браузере. Фото можно указывать путем к файлу, например assets/img/news/news-01.jpg.</p></form>
+  <div class="admin-card reveal"><div class="eyebrow">Реестр</div><h3>Опубликованные новости</h3><div id="adminNewsList" class="admin-news-list"></div></div>
+</div>
+<div class="admin-card reveal" style="margin-top:18px;">
+  <div class="eyebrow">Обращения граждан</div>
+  <h3>Реестр обращений из чат-бота</h3>
+  <p>Здесь отображаются обращения, оставленные через чат-бота в правом нижнем углу сайта. В демонстрационной версии они сохраняются в браузере.</p>
+  <div id="adminAppealsList" class="appeals-list"></div>
+</div>
+
+</div></section>
+<section class="section"><div class="container"><div class="quote reveal"><strong style="display:block; margin-bottom:8px;">Важно для руководителя</strong><p>Эта версия показывает рабочую логику администрирования: сотрудник может добавлять новости и включать универсальный режим правки на любой странице. Для настоящей эксплуатации администрацией нужно подключить серверную часть: авторизацию сотрудников, базу данных, резервное копирование, журнал действий и защиту персональных данных.</p></div></div></section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-box reveal"><div><div class="eyebrow">Панель управления</div><h3 style="margin:16px 0 12px;">Демо-админка для презентации руководителю.</h3><p>Можно показать, как сотрудник редактирует сайт без правки кода.</p></div><div><div class="footer-links"><a href="index.html">Главная</a><a href="news.html">Новости</a><a href="contacts.html">Контакты</a></div></div></div></div></footer>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/news-store.js"></script>
+<script src="assets/js/site-cms.js"></script>
+</body>
+</html>

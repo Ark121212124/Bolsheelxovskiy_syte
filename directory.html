@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Справочник — Большеелховское сельское поселение</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/img/icons/site-logo.png" alt="Логотип поселения"></span><span><span class="brand-title">Администрация Большеелховского сельского поселения</span><span class="brand-subtitle">Официальный сайт поселения</span></span></a><button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button><nav class="nav-links"><a data-link href="index.html">Главная</a><a data-link href="about.html">О поселении</a><a data-link href="residents.html">Жителям</a><a data-link href="directory.html">Справочник</a><a data-link href="news.html">Новости</a><a data-link href="events.html">События</a><a data-link href="contacts.html">Контакты</a><a data-link href="admin.html">Админ</a></nav></div></header>
+<main>
+<section class="section directory-hero">
+  <div class="container directory-hero__grid">
+    <article class="directory-hero__copy reveal">
+      <div class="eyebrow">Полезный раздел</div>
+      <h1>Справочник организаций и материалов</h1>
+      <p>Собрал в одном месте ссылки на важные официальные разделы: ЖКХ, безопасность, медицина, образование, культура, спорт, бизнес, транспорт, социальная помощь и сведения о поселении.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#directory-list">Открыть справочник</a><a class="btn btn-secondary" href="contacts.html">Контакты администрации</a></div>
+    </article>
+    <aside class="directory-hero__panel reveal">
+      <div class="directory-big-number">68</div>
+      <strong>официальных ссылок</strong>
+      <span>разложены по понятным категориям, чтобы жителю не приходилось искать нужный раздел вручную.</span>
+      <div class="directory-mini-stats"><b>11</b><small>тематических блоков</small></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section directory-tools" id="directory-list">
+  <div class="container">
+    <div class="directory-toolbar reveal">
+      <div>
+        <div class="eyebrow">Быстрый поиск</div>
+        <h2>Найдите нужный раздел</h2>
+      </div>
+      <div class="directory-controls">
+        <input id="directorySearch" class="input" type="search" placeholder="Например: аптеки, полиция, школа, ЖКХ">
+        <select id="directoryFilter" class="input">
+          <option value="all">Все категории</option>
+          <option value="zhkh">ЖКХ</option>
+          <option value="security">Безопасность</option>
+          <option value="transport">Транспорт</option>
+          <option value="business">Экономика</option>
+          <option value="social">Соцсфера</option>
+          <option value="education">Образование</option>
+          <option value="health">Медицина</option>
+          <option value="culture">Культура и туризм</option>
+          <option value="sport">Спорт</option>
+          <option value="building">Градостроительство</option>
+          <option value="official">Официально</option>
+        </select>
+      </div>
+    </div>
+    <div class="directory-hint reveal">Карточки открывают официальный сайт в новой вкладке. Самые важные внутренние разделы по контактам и направлениям деятельности остаются на странице «Контакты».</div>
+    <div id="directoryGrid" class="directory-grid"></div>
+    <div id="directoryEmpty" class="directory-empty" hidden>Ничего не найдено. Попробуйте изменить запрос или выбрать другую категорию.</div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-box reveal"><div><div class="eyebrow">Большеелховское сельское поселение</div><h3 style="margin:16px 0 12px;">Справочник, контакты, новости и сервисы для жителей.</h3><p>Справочник вынесен в отдельную страницу, чтобы не перегружать контакты и быстрее находить нужные официальные разделы.</p></div><div><div class="footer-links"><a href="index.html">Главная</a><a href="about.html">О поселении</a><a href="residents.html">Жителям</a><a href="directory.html">Справочник</a><a href="news.html">Новости</a><a href="events.html">События</a><a href="contacts.html">Контакты</a></div></div></div></div></footer>
+<script src="assets/js/app.js"></script>
+<script>
+const DIRECTORY_GROUPS = [{"id": "housing", "filter": "zhkh", "kicker": "ЖКХ", "title": "ЖКХ и коммунальная инфраструктура", "desc": "Управляющие организации, ТКО, коммунальные службы, тепло-, электро-, газо- и водоснабжение.", "links": [["Справочник организаций", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/"], ["Управляющие компании", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/upravlyayuschie-kompanii/"], ["ТСЖ", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/tszh/"], ["ТКО", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/tko/"], ["Организации и службы ЖКХ", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/organizatsii-i-sluzhby-zhkh/"], ["Теплоснабжение", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/teplosnabzhenie/"], ["Электроснабжение", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/elektrosnabzhenie/"], ["Газоснабжение", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/gazosnabzhenie/"], ["Водоснабжение и водоотведение", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/vodosnabzhenie-i-vodootvedenie/"], ["Энергосбережение", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/energosberezhenie/"], ["Обслуживающие организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/obsluzhivayuschie-organizatsii/"]]}, {"id": "security", "filter": "security", "kicker": "Безопасность", "title": "Безопасность, полиция и экология", "desc": "Пожарные подразделения, полиция, ГИБДД, экология, охранные организации и участковый.", "links": [["Пожарные подразделения", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/pozharnye-podrazdeleniya/"], ["Отделения полиции", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/otdeleniya-politsii/"], ["Организации безопасности и экологии", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/organizatsii-bezopasnosti-i-ekologii/"], ["Охранные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/ohrannye-organizatsii/"], ["Отделы ГИБДД", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/otdely-gibdd/"], ["Узнайте, кто ваш участковый", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/dlya-zhiteley/poleznye-materialy/uznayte-kto-vash-uchastkovyy/"]]}, {"id": "transport", "filter": "transport", "kicker": "Транспорт", "title": "Дороги и транспорт", "desc": "Организации, связанные с дорогами, дорожным строительством и транспортным обслуживанием.", "links": [["Дорожно-строительные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/dorozhno-stroitelnye-organizatsii/"], ["Транспортные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/transportnye-organizatsii/"]]}, {"id": "business", "filter": "business", "kicker": "Экономика", "title": "Бизнес, производство и закупки", "desc": "Организации торговли и услуг, промышленность, сельское хозяйство, закупки и вакансии.", "links": [["Торговые организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/torgovye-organizatsii/"], ["Производственные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/proizvodstvennye-organizatsii/"], ["Организации сферы услуг", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/organizatsii-sfery-uslug/"], ["Промышленные парки", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/promyshlennye-parki/"], ["Электроэнергетика", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/elektroenergetika/"], ["Промышленность", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/promyshlennost/"], ["Сельское хозяйство", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/selskoe-hozyaystvo/"], ["Муниципальные закупки и конкурсы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/ofitsialno/munitsipalnye-zakupki-i-konkursy/"], ["Оценка регулирующего воздействия", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/ofitsialno/otsenka-reguliruyuschego-vozdeystviya/"], ["Вакансии", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/glavnoe/vakansii/"]]}, {"id": "social", "filter": "social", "kicker": "Соцсфера", "title": "Социальная помощь и поддержка", "desc": "Социальное обслуживание, приюты, психологическая помощь, санатории и юридическая помощь.", "links": [["Центры социального обслуживания", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/tsentry-sotsialnogo-obsluzhivaniya/"], ["Социальные приюты и дома престарелых", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/sotsialnye-priyuty-i-doma-prestarelyh/"], ["Центры психологической помощи населению", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/tsentry-psihologicheskoy-pomoschi-naseleniyu/"], ["Санатории и дома отдыха", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/sanatorii-i-doma-otdyha/"], ["Бесплатная юридическая помощь", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/dlya-zhiteley/poleznye-materialy/besplatnaya-yuridicheskaya-pomosch/"]]}, {"id": "education", "filter": "education", "kicker": "Образование", "title": "Образование и дети", "desc": "Детские сады, школы, учреждения среднего и высшего образования, дополнительное образование.", "links": [["ДОУ", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/dou/"], ["Школы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/shkoly/"], ["ВУЗы и СУЗы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/vuzy-i-suzy/"], ["Организации дополнительного образования", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/organizatsii-dopolnitelnogo-obrazovaniya/"]]}, {"id": "health", "filter": "health", "kicker": "Медицина", "title": "Здравоохранение и аптеки", "desc": "Медицинские учреждения, стоматология, женские консультации и аптеки.", "links": [["Больницы и поликлиники", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/bolnitsy-i-polikliniki/"], ["Стоматологические медучреждения", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/stomatologicheskie-meduchrezhdeniya/"], ["Роддома и женские консультации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/roddoma-i-zhenskie-konsultatsii/"], ["Аптеки", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/apteki/"]]}, {"id": "culture", "filter": "culture", "kicker": "Культура", "title": "Культура, отдых и туризм", "desc": "Учреждения культуры, библиотеки, места отдыха, туристические и гостиничные организации.", "links": [["Музеи и выставки", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/muzei-i-vystavki/"], ["Театры", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/teatry/"], ["Кинотеатры", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/kinoteatry/"], ["Концертные залы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/kontsertnye-zaly/"], ["Парки культуры и отдыха", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/parki-kultury-i-otdyha/"], ["Библиотеки", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/biblioteki/"], ["Организации размещения", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/organizatsii-razmescheniya/"], ["Туристические организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/turisticheskie-organizatsii/"], ["Другие организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/drugie-organizatsii/"]]}, {"id": "sport", "filter": "sport", "kicker": "Спорт", "title": "Спорт и активный отдых", "desc": "Спортивные команды, клубы, организации и олимпийское направление.", "links": [["Спортивные команды и клубы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/sportivnye-komandy-i-kluby/"], ["Спортивные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/sportivnye-organizatsii/"], ["Олимпийские организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/olimpiyskie-organizatsii/"]]}, {"id": "building", "filter": "building", "kicker": "Градостроительство", "title": "Проектные и изыскательные организации", "desc": "Организации, которые относятся к проектированию, обследованиям и развитию территории.", "links": [["Изыскательные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/izyskatelnye-organizatsii/"], ["Проектные организации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/spravochnik/proektnye-organizatsii/"]]}, {"id": "official", "filter": "official", "kicker": "Официально", "title": "Официальная информация и полезные материалы", "desc": "FAQ, бюджет для граждан, муниципальный контроль, СМИ, символика, история и материалы для гостей.", "links": [["Ответы на часто задаваемые вопросы", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/dlya-zhiteley/uslugi-i-servisy/otpravit-obraschenie/otvety-na-chasto-zadavaemye-voprosy/"], ["Бюджет для граждан", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/ofitsialno/statistika/byudzhet-dlya-grazhdan/"], ["Муниципальный контроль", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/ofitsialno/munitsipalnyy-kontrol/"], ["Средства массовой информации", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/dlya-zhiteley/uslugi-i-servisy/sredstva-massovoy-informatsii/"], ["Почетные граждане", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/pochetnye-grazhdane/"], ["Символика", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/simvolika/"], ["История", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/istoriya/"], ["Достопримечательности", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/dostoprimechatelnosti/"], ["Достопримечательность 1", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/dostoprimechatelnosti/dostoprimechatelnosti_1.html"], ["Достопримечательность 2", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/dostoprimechatelnosti/dostoprimechatelnosti_2.html"], ["Населенные пункты", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/naselennye-punkty/"], ["Для гостей и туристов", "https://bolsheelxovskoe-r13.gosweb.gosuslugi.ru/o-munitsipalnom-obrazovanii/dlya-gostey-i-turistov/"]]}];
+(function(){
+  const grid = document.getElementById('directoryGrid');
+  const empty = document.getElementById('directoryEmpty');
+  const search = document.getElementById('directorySearch');
+  const filter = document.getElementById('directoryFilter');
+  const escapeHtml = (v) => String(v || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+  function card(group){
+    const links = group.links.map(([title,url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(title)}<span>↗</span></a>`).join('');
+    const keywords = [group.kicker, group.title, group.desc, ...group.links.map(x => x[0])].join(' ').toLowerCase();
+    return `<article class="directory-card reveal visible" data-filter="${group.filter}" data-keywords="${escapeHtml(keywords)}">
+      <button class="directory-card__head" type="button">
+        <span class="directory-card__badge">${escapeHtml(group.kicker)}</span>
+        <strong>${escapeHtml(group.title)}</strong>
+        <small>${escapeHtml(group.desc)}</small>
+        <b>${group.links.length} разделов</b>
+      </button>
+      <div class="directory-card__links">${links}</div>
+    </article>`;
+  }
+  function render(){
+    const q = (search.value || '').trim().toLowerCase();
+    const f = filter.value;
+    grid.innerHTML = DIRECTORY_GROUPS.map(card).join('');
+    let shown = 0;
+    grid.querySelectorAll('.directory-card').forEach(el => {
+      const okFilter = f === 'all' || el.dataset.filter === f;
+      const okSearch = !q || el.dataset.keywords.includes(q);
+      el.hidden = !(okFilter && okSearch);
+      if (!el.hidden) shown++;
+      el.querySelector('.directory-card__head').addEventListener('click', () => el.classList.toggle('is-open'));
+    });
+    empty.hidden = shown !== 0;
+  }
+  search.addEventListener('input', render);
+  filter.addEventListener('change', render);
+  render();
+  const first = grid.querySelector('.directory-card');
+  if(first) first.classList.add('is-open');
+})();
+</script>
+<script src="assets/js/site-cms.js"></script>
+</body>
+</html>

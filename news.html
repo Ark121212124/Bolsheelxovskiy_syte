@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Новости — Большеелховское сельское поселение</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/img/icons/site-logo.png" alt="Логотип поселения"></span><span><span class="brand-title">Администрация Большеелховского сельского поселения</span><span class="brand-subtitle">Официальный сайт поселения</span></span></a><button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button><nav class="nav-links"><a data-link href="index.html">Главная</a><a data-link href="about.html">О поселении</a><a data-link href="residents.html">Жителям</a><a data-link href="directory.html">Справочник</a><a data-link href="news.html">Новости</a><a data-link href="events.html">События</a><a data-link href="contacts.html">Контакты</a><a data-link href="admin.html">Админ</a></nav></div></header>
+<main>
+<section class="news-hero section">
+  <div class="container">
+    <div class="news-hero-grid reveal">
+      <div class="news-hero-copy">
+        <div class="eyebrow">Новости и репортажи</div>
+        <h1>Официальная лента поселения</h1>
+        <p>Раздел оформлен как современная новостная страница: поиск, фильтрация по категориям, раскрытие полного текста и переход к исходным материалам на официальном портале.</p>
+        <div class="news-hero-actions">
+          <a class="btn btn-primary" href="#newsList">Смотреть новости</a>
+          <a class="btn btn-secondary" href="admin.html">Добавить публикацию</a>
+        </div>
+      </div>
+      <aside class="news-dashboard" aria-label="Сводка раздела новостей">
+        <div class="dashboard-card dashboard-card--main" id="sourcePanel"><strong>16</strong><span>материалов из официального раздела</span></div>
+        <div class="dashboard-card"><strong>8</strong><span>тематических категорий</span></div>
+        <div class="dashboard-card"><strong>∞</strong><span>добавление через админ-панель</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section news-catalog-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Каталог публикаций</div>
+        <h2>Последние сообщения администрации</h2>
+      </div>
+      <p>Используйте поиск по заголовку или тексту новости. Фильтр по категориям помогает быстро найти материалы по земельным отношениям, безопасности, благоустройству и другим темам.</p>
+    </div>
+    <div class="news-toolbar reveal">
+      <label class="news-search-field"><span>Поиск</span><input id="newsSearch" class="input" type="search" placeholder="Например: земля, безопасность, спорт"></label>
+      <label><span>Категория</span><select id="newsCategory" class="input"><option value="">Все категории</option></select></label>
+      <div class="news-toolbar-status"><span>Показано</span><strong id="newsCounter">0</strong></div>
+      <button class="btn btn-ghost" id="newsReset" type="button">Сбросить</button>
+    </div>
+    <div id="newsList" class="news-list news-list--modern"></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="quote reveal"><strong style="display:block; margin-bottom:8px;">Как работает раздел</strong><p>Новости уже встроены в файл данных сайта. Новые публикации можно добавлять, редактировать и удалять через страницу «Админ». В демонстрационной версии изменения сохраняются в браузере пользователя.</p></div>
+  </div>
+</section>
+</main><footer class="footer"><div class="container"><div class="footer-box reveal"><div><div class="eyebrow">Новости</div><h3 style="margin:16px 0 12px;">Официальная и общественная повестка поселения.</h3><p>Раздел подготовлен так, чтобы сотрудники администрации могли вести новости и объявления в удобном формате.</p></div><div><div class="footer-links"><a href="index.html">Главная</a><a href="about.html">О поселении</a><a href="residents.html">Жителям</a><a href="directory.html">Справочник</a><a href="news.html">Новости</a><a href="events.html">События</a><a href="contacts.html">Контакты</a></div></div></div></div></footer>
+<script src="assets/js/news-store.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/site-cms.js"></script>
+</body></html>

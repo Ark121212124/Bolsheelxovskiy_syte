@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>События — Большеелховское сельское поселение</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header"><div class="container navbar"><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/img/icons/site-logo.png" alt="Логотип поселения"></span><span><span class="brand-title">Администрация Большеелховского сельского поселения</span><span class="brand-subtitle">Официальный сайт поселения</span></span></a><button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button><nav class="nav-links"><a data-link href="index.html">Главная</a><a data-link href="about.html">О поселении</a><a data-link href="residents.html">Жителям</a><a data-link href="directory.html">Справочник</a><a data-link href="news.html">Новости</a><a data-link href="events.html">События</a><a data-link href="contacts.html">Контакты</a><a data-link href="admin.html">Админ</a></nav></div></header>
+<main>
+<section class="events-hero section">
+  <div class="container">
+    <div class="events-hero-grid reveal">
+      <div class="events-hero-copy">
+        <div class="eyebrow">Календарь событий</div>
+        <h1>Афиша поселения</h1>
+        <p>В этом разделе собраны мероприятия, встречи и важные даты для жителей. Карточки открываются на отдельных страницах с изображением, описанием, датой, временем и ссылкой на официальный источник.</p>
+        <div class="news-hero-actions">
+          <a class="btn btn-primary" href="#eventsList">Смотреть события</a>
+          <a class="btn btn-secondary" href="news.html">Перейти к новостям</a>
+        </div>
+      </div>
+      <aside class="events-dashboard" aria-label="Сводка календаря событий">
+        <div class="event-stat event-stat--main"><strong id="eventsTotal">5</strong><span>мероприятий из официального календаря</span></div>
+        <div class="event-stat"><strong>2024</strong><span>публичная афиша поселения</span></div>
+        <div class="event-stat"><strong>5</strong><span>отдельных страниц события</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section events-catalog-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Список мероприятий</div>
+        <h2>Ближайшие и прошедшие события</h2>
+      </div>
+      <p>Используйте поиск и фильтр, чтобы быстро найти нужное мероприятие. Каждая карточка ведёт на отдельную страницу с полным описанием.</p>
+    </div>
+    <div class="events-toolbar reveal">
+      <label class="news-search-field"><span>Поиск</span><input id="eventSearch" class="input" type="search" placeholder="Например: праздник, встреча, культура"></label>
+      <label><span>Тип события</span><select id="eventCategory" class="input"><option value="">Все типы</option></select></label>
+      <div class="news-toolbar-status"><span>Показано</span><strong id="eventCounter">0</strong></div>
+      <button class="btn btn-ghost" id="eventReset" type="button">Сбросить</button>
+    </div>
+    <div id="eventsList" class="events-list"></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="quote reveal"><strong style="display:block; margin-bottom:8px;">Как работает раздел</strong><p>Данные событий вынесены в отдельный файл. При необходимости его можно подключить к админ-панели так же, как уже подключён раздел новостей.</p></div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-box reveal"><div><div class="eyebrow">Календарь событий</div><h3 style="margin:16px 0 12px;">Афиша поселения и важные общественные мероприятия.</h3><p>Раздел помогает жителям быстро узнавать о встречах, праздниках, акциях и мероприятиях на территории поселения.</p></div><div><div class="footer-links"><a href="index.html">Главная</a><a href="about.html">О поселении</a><a href="residents.html">Жителям</a><a href="directory.html">Справочник</a><a href="news.html">Новости</a><a href="events.html">События</a><a href="contacts.html">Контакты</a></div></div></div></div></footer>
+<script src="assets/js/events-store.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/site-cms.js"></script>
+</body>
+</html>
