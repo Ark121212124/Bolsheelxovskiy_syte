@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта проблем поселения</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Подключаем API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <style>
+        #map { width: 100%; height: 500px; margin-bottom: 20px; background-color: #eee; }
+        .problem-form { display: none; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; background: #d9534f; color: white; border: none; cursor: pointer; }
+        button:hover { background: #c9302c; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Интерактивная карта проблем</h1>
+        <nav>
+            <a href="index.html">Главная</a> | 
+            <a href="map.html">Карта проблем</a>
+        </nav>
+    </header>
+
+    <main>
+        <p style="text-align: center;">Кликните на карту в том месте, где обнаружили проблему (яма, мусор, не горит свет), чтобы оставить заявку.</p>
+        
+        <div id="map"></div>
+
+        <!-- Форма, которая появляется при клике на карту -->
+        <div class="problem-form" id="problemForm">
+            <h3>Сообщить о проблеме по выбранным координатам</h3>
+            <div class="form-group">
+                <label>Категория:</label>
+                <select id="probCategory">
+                    <option value="Дороги">Яма на дороге</option>
+                    <option value="Освещение">Не горит фонарь</option>
+                    <option value="ЖКХ">Прорыв трубы / ЖКХ</option>
+                    <option value="Мусор">Стихийная свалка</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Описание проблемы:</label>
+                <textarea id="probDesc" rows="3" placeholder="Опишите подробности..."></textarea>
+            </div>
+            <button onclick="saveProblem()">Отправить метку</button>
+            <button onclick="cancelProblem()" style="background: #ccc; color: black;">Отмена</button>
+        </div>
+    </main>
+
+    <script>
+        let myMap;
+        let tempCoords = null; // Временные координаты при клике
+        let tempPlacemark = null;
+
+        // Инициализация карты
+        ymaps.ready(init);
+
+        function init() {
+            // Координаты Большой Елховки (приблизительно)
+            myMap = new ymaps.Map("map", {
+                center: [54.2185, 45.3167], 
+                zoom: 14
+            });
+
+            // Загружаем уже существующие проблемы из localStorage
+            loadExistingProblems();
+
+            // Обработчик клика по карте
+            myMap.events.add('click', function (e) {
+                tempCoords = e.get('coords');
+                
+                // Удаляем предыдущую временную метку, если есть
+                if (tempPlacemark) {
+                    myMap.geoObjects.remove(tempPlacemark);
+                }
+
+                // Ставим новую временную метку
+                tempPlacemark = new ymaps.Placemark(tempCoords, {
+                    balloonContent: 'Вы выбрали это место'
+                }, { preset: 'islands#blueIcon' });
+                myMap.geoObjects.add(tempPlacemark);
+
+                // Показываем форму
+                document.getElementById('problemForm').style.display = 'block';
+                // Скроллим к форме
+                document.getElementById('problemForm').scrollIntoView({behavior: "smooth"});
+            });
+        }
+
+        // Сохранение проблемы
+        function saveProblem() {
+            const category = document.getElementById('probCategory').value;
+            const desc = document.getElementById('probDesc').value;
+
+            if(!desc) {
+                alert('Пожалуйста, опишите проблему');
+                return;
+            }
+
+            const problemData = {
+                id: Date.now(),
+                coords: tempCoords,
+                category: category,
+                desc: desc,
+                date: new Date().toLocaleDateString('ru-RU'),
+                status: 'Актуально'
+            };
+
+            // Сохраняем в localStorage
+            let problems = JSON.parse(localStorage.getItem('mapProblems')) || [];
+            problems.push(problemData);
+            localStorage.setItem('mapProblems', JSON.stringify(problems));
+
+            // Скрываем форму и очищаем поля
+            cancelProblem();
+            
+            // Очищаем карту и загружаем все заново
+            myMap.geoObjects.removeAll();
+            loadExistingProblems();
+            alert('Спасибо! Ваша метка отправлена в администрацию.');
+        }
+
+        function cancelProblem() {
+            document.getElementById('problemForm').style.display = 'none';
+            document.getElementById('probDesc').value = '';
+            if (tempPlacemark) {
+                myMap.geoObjects.remove(tempPlacemark);
+                tempPlacemark = null;
+            }
+        }
+
+        // Функция отрисовки сохраненных меток
+        function loadExistingProblems() {
+            let problems = JSON.parse(localStorage.getItem('mapProblems')) || [];
+            
+            problems.forEach(prob => {
+                // Выбираем цвет в зависимости от категории
+                let iconColor = 'islands#redIcon'; // по умолчанию красный
+                if(prob.category === 'Освещение') iconColor = 'islands#yellowIcon';
+                if(prob.category === 'Дороги') iconColor = 'islands#blackIcon';
+                
+                let pm = new ymaps.Placemark(prob.coords, {
+                    balloonContentHeader: prob.category,
+                    balloonContentBody: prob.desc,
+                    balloonContentFooter: `Дата: ${prob.date} | Статус: ${prob.status}`
+                }, {
+                    preset: iconColor
+                });
+                myMap.geoObjects.add(pm);
+            });
+        }
+    </script>
+</body>
+</html>
